@@ -1,6 +1,10 @@
 {
   "name": "wa-client",
   "version": "0.1.0",
+  "author": {
+    "name": "Ivan Volodin",
+    "email": "ivanvolodin960@gmail.com"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
