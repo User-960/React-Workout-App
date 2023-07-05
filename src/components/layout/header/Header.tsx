@@ -1,8 +1,11 @@
 import { FC } from 'react'
-import styles from './Header.module.scss'
-import { useAuth } from '@/components/hooks/useAuth'
 import { FiArrowLeft } from 'react-icons/fi'
+
+import { useAuth } from '@/components/hooks/useAuth'
+
 import Hamburger from '../hamburger/Hamburger'
+
+import styles from './Header.module.scss'
 
 const Header: FC = () => {
 	const { isAuth } = useAuth()

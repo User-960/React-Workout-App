@@ -1,7 +1,9 @@
 import { FC } from 'react'
-import styles from './Hamburger.module.scss'
-import { CgMenuRight, CgClose } from 'react-icons/cg'
+import { CgClose, CgMenuRight } from 'react-icons/cg'
+
 import { useOnClickOutside } from '@/components/hooks/useOnClickOutside'
+
+import styles from './Hamburger.module.scss'
 import Menu from './Menu'
 
 const Hamburger: FC = () => {
