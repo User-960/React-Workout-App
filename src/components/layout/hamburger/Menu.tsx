@@ -15,7 +15,7 @@ const Menu: FC<IMenuProps> = ({ isShow }) => {
       <ul>
         {menu.map((item, index) => (
           <li key={`_menu_${index}`}>
-            <Link href={`/${item.link}`}>{item.title}</Link>
+            <Link href={`${item.link}`}>{item.title}</Link>
           </li>
         ))}
         <li>
