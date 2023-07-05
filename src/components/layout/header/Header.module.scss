@@ -9,5 +9,8 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
+		> svg {
+			color: #fff;
+		}
 	}
 }
