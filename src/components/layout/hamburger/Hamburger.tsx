@@ -11,7 +11,7 @@ const Hamburger: FC = () => {
       <button onClick={() => { setIsShow(!false) }}>
         {isShow ? <CgClose /> : <CgMenuRight />}
       </button>
-      {isShow && (<div className={styles.menu} ref={ref}><Menu /></div>)}
+      <menu ref={ref}><Menu isShow={isShow} /></menu>
     </div>
   )
 }

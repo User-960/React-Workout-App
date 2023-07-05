@@ -1,4 +1,9 @@
-export const menu = [
+interface IMenuItem {
+	title: string
+	link: string
+}
+
+export const menu: IMenuItem[] = [
 	{
 		title: 'Workouts',
 		link: '/workouts'
