@@ -28,6 +28,7 @@ const Layout: FC<ILayoutProps> = ({
 			<Meta title={meta.title} description={meta.description}>
 				<section
 					className={cn(styles.wrapper, { [styles.otherPage]: !!heading })}
+					style={{ backgroundImage: `url(${bgImage})` }}
 				>
 					<Header backLink={backLink} />
 					<main>

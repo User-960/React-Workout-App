@@ -15,8 +15,8 @@ interface IPropsHeader {
 
 const Header: FC<IPropsHeader> = ({ backLink }) => {
 	const { isAuth } = useAuth()
-
 	const { pathname, push } = useRouter()
+
 	return (
 		<header className={styles.header}>
 			{pathname !== '/' ? (
