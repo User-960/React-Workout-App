@@ -11,7 +11,7 @@ interface ILayoutProps {
 	bgImage?: any
 	heading?: string
 	backLink?: string
-	children: ReactNode
+	children?: ReactNode
 
 	meta: IMeta
 }
