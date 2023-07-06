@@ -4,7 +4,7 @@ import { FC, ReactNode } from 'react'
 import styles from './Button.module.scss'
 
 interface IButtonProps {
-	clickHandler: any
+	clickHandler?: any
 	size?: string
 	children?: ReactNode
 }
