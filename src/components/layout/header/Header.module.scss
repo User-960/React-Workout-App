@@ -4,17 +4,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 30px 29px 0px 29px;
 
 	> button {
 		background-color: transparent;
 		border: none;
 		outline: none;
 		cursor: pointer;
+		font-size: 30px;
 
 		> svg {
-			width: 29px;
-			height: 29px;
 			color: #fff;
 			animation: opacity 0.4s;
 		}
