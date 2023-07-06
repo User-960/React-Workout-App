@@ -10,10 +10,11 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
-		font-size: 30px;
 
 		> svg {
-			color: #fff;
+			// width: 30px;
+			// height: 30px;
+			// color: #fff;
 			animation: opacity 0.4s;
 		}
 	}

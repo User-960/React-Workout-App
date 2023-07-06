@@ -29,8 +29,11 @@ const Layout: FC<ILayoutProps> = ({
 				<section
 					className={cn(styles.wrapper, { [styles.otherPage]: !!heading })}
 				>
-					<Header />
-					<main>{children}</main>
+					<Header backLink={backLink} />
+					<main>
+						{heading && <h1 className={styles.heading}>{heading}</h1>}
+						{children && <div>{children}</div>}
+					</main>
 				</section>
 			</Meta>
 		</>
