@@ -3,13 +3,16 @@ import { FC } from 'react'
 
 import Button from '@/components/ui/button/Button'
 
+import { useAuth } from '@/components/hooks/useAuth'
+
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
 
 import styles from './Home.module.scss'
 
 const Home: FC = () => {
-	const { pathname, push } = useRouter()
+	const { push } = useRouter()
+	const { isAuth } = useAuth()
 
 	const meta: IMeta = {
 		title: 'Home',
@@ -20,12 +23,13 @@ const Home: FC = () => {
 		<Layout meta={meta} bgImage='/images/home-bg.jpg'>
 			<Button
 				clickHandler={() => {
-					push('/new-workout')
+					push(isAuth ? '/new-workout' : '/auth')
 				}}
 			>
-				New
+				{isAuth ? 'New' : 'Sign in'}
 			</Button>
 			<h1 className={styles.heading}>EXERCISES FOR THE SHOULDERS</h1>
+			{/*TODO: Counters*/}
 		</Layout>
 	)
 }
