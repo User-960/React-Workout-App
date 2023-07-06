@@ -9,7 +9,12 @@ const NotFound: FC = () => {
 		description: 'Page is not found'
 	}
 
-	return <Layout meta={meta} heading='404 | Page is not found' />
+	return (
+		<>
+			<Layout meta={meta} heading='Page is not found' />
+			<div className='wrapper-inner-page'>404 | Page is not found</div>
+		</>
+	)
 }
 
 export default NotFound
