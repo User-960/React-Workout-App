@@ -1,17 +1,20 @@
 import { FC } from 'react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import Button from '@/components/ui/button/Button'
+import Field from '@/components/ui/field/Field'
 
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
+
+import { IAuthFields } from '@/interfaces/form.interface'
 
 const Auth: FC = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors }
-	} = useForm({
+	} = useForm<IAuthFields>({
 		mode: 'onChange'
 	})
 
@@ -20,7 +23,7 @@ const Auth: FC = () => {
 		description: 'Page authorization'
 	}
 
-	const onSubmit = (data: any) => {
+	const onSubmit: SubmitHandler<IAuthFields> = data => {
 		console.log(data)
 	}
 
@@ -28,12 +31,27 @@ const Auth: FC = () => {
 		<Layout meta={meta} heading='Sign in' bgImage='/images/auth-bg.png'>
 			<div className='wrapper-inner-page'>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<input
+					<Field
 						type='text'
 						placeholder='Enter email'
-						{...register('email', {
-							required: 'Email is required'
-						})}
+						error={errors?.email?.message}
+						name='email'
+						register={register}
+						required={'*Email is required! Example: person@mail.com'}
+						pattern={
+							/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
+						}
+					/>
+					<Field
+						type='password'
+						placeholder='Enter password'
+						error={errors?.password?.message}
+						name='password'
+						register={register}
+						required={'*Password is required!'}
+						pattern={
+							/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{4,}/g
+						}
 					/>
 					<Button>Let`s go</Button>
 				</form>
