@@ -3,11 +3,15 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import Button from '@/components/ui/button/Button'
 import Field from '@/components/ui/field/Field'
+import Loader from '@/components/ui/loader/Loader'
 
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
 
 import { IAuthFields } from '@/interfaces/form.interface'
+
+const isLoading: boolean = true
+const isLoadingAuth: boolean = false
 
 const Auth: FC = () => {
 	const {
@@ -30,6 +34,8 @@ const Auth: FC = () => {
 	return (
 		<Layout meta={meta} heading='Sign in' bgImage='/images/auth-bg.png'>
 			<div className='wrapper-inner-page'>
+				{true && <Loader />}
+
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Field
 						type='text'
