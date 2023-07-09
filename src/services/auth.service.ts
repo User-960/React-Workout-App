@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
 import { $axios } from '@/api/api'
+import { ENUSER } from '@/config/app.constants'
 import { IUserResponse } from '@/interfaces/user.interface'
 
 class AuthService {
@@ -11,7 +12,7 @@ class AuthService {
 				password
 			})
 
-			if (data.token) Cookies.set('red', data.token)
+			if (data.token) Cookies.set(ENUSER.TOKEN, data.token)
 
 			return data
 		} catch (error: any) {

@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 
+import AuthProvider from '@/components/providers/AuthProvider'
+
 import '@/assets/styles/index.scss'
 import { TypeComponentAuthFields } from '@/interfaces/page.interface'
 
@@ -16,8 +18,10 @@ const queryClient = new QueryClient({
 
 export default function App({ Component, pageProps }: TypeApp) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<Component {...pageProps} />
-		</QueryClientProvider>
+		<AuthProvider Component={Component}>
+			<QueryClientProvider client={queryClient}>
+				<Component {...pageProps} />
+			</QueryClientProvider>
+		</AuthProvider>
 	)
 }

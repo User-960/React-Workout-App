@@ -1,11 +1,9 @@
+import { NextPage } from 'next'
+
 import Auth from '@/components/screens/auth/Auth'
 
-import { NextPageAuth } from '@/interfaces/page.interface'
-
-const AuthPage: NextPageAuth = () => {
+const AuthPage: NextPage = () => {
 	return <Auth />
 }
-
-AuthPage.isOnlyUser = true
 
 export default AuthPage

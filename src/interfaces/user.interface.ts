@@ -13,3 +13,5 @@ export interface IUserResponse {
 	token: string
 	user: IUser
 }
+
+export type TypeUser = IUser | null

@@ -1,54 +1,24 @@
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
-import { FC, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FC } from 'react'
 
 import Button from '@/components/ui/button/Button'
 import Field from '@/components/ui/field/Field'
 import Loader from '@/components/ui/loader/Loader'
 
+import { useAuthPage } from '@/components/hooks/useAuthPage'
+
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
 
 import styles from './Auth.module.scss'
-import { IAuthFields } from '@/interfaces/form.interface'
-import AuthService from '@/services/auth.service'
 
 const Auth: FC = () => {
-	const [type, setType] = useState('login')
-
-	const { push } = useRouter()
-
 	const meta: IMeta = {
 		title: 'Authorization',
 		description: 'Page authorization'
 	}
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset
-	} = useForm<IAuthFields>({
-		mode: 'onChange'
-	})
-
-	const { mutateAsync, isLoading } = useMutation(
-		['auth'],
-		({ email, password }: IAuthFields) =>
-			AuthService.main(email, password, type),
-		{
-			onSuccess: data => {
-				alert('success')
-				reset()
-				push('/')
-			}
-		}
-	)
-
-	const onSubmit: SubmitHandler<IAuthFields> = async data => {
-		await mutateAsync(data)
-	}
+	const { setType, register, handleSubmit, errors, isLoading, onSubmit } =
+		useAuthPage()
 
 	return (
 		<>
