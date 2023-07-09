@@ -1,11 +1,15 @@
 import Cookies from 'js-cookie'
 
 import { $axios } from '@/api/api'
+import { IUserResponse } from '@/interfaces/user.interface'
 
 class AuthService {
-	async main(type: 'login' | 'reg') {
+	async main(email: string, password: string, type: string) {
 		try {
-			const { data } = await $axios.post(`/users/${type}`)
+			const { data } = await $axios.post<IUserResponse>(`/auth/${type}`, {
+				email,
+				password
+			})
 
 			if (data.token) Cookies.set('red', data.token)
 

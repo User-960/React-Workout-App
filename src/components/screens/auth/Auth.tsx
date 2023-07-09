@@ -1,3 +1,5 @@
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
 import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -10,36 +12,49 @@ import { IMeta } from '@/components/seo/meta.interface'
 
 import styles from './Auth.module.scss'
 import { IAuthFields } from '@/interfaces/form.interface'
-
-const isLoading: boolean = false
-const isLoadingAuth: boolean = false
+import AuthService from '@/services/auth.service'
 
 const Auth: FC = () => {
-	const [type, setType] = useState<string>('auth')
+	const [type, setType] = useState('login')
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors }
-	} = useForm<IAuthFields>({
-		mode: 'onChange'
-	})
+	const { push } = useRouter()
 
 	const meta: IMeta = {
 		title: 'Authorization',
 		description: 'Page authorization'
 	}
 
-	const onSubmit: SubmitHandler<IAuthFields> = data => {
-		/*TODO: type*/
-		console.log(data)
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset
+	} = useForm<IAuthFields>({
+		mode: 'onChange'
+	})
+
+	const { mutateAsync, isLoading } = useMutation(
+		['auth'],
+		({ email, password }: IAuthFields) =>
+			AuthService.main(email, password, type),
+		{
+			onSuccess: data => {
+				alert('success')
+				reset()
+				push('/')
+			}
+		}
+	)
+
+	const onSubmit: SubmitHandler<IAuthFields> = async data => {
+		await mutateAsync(data)
 	}
 
 	return (
 		<>
 			<Layout meta={meta} heading='Sign in' bgImage='/images/auth-bg.png' />
 			<div className='wrapper-inner-page'>
-				{(isLoading || isLoadingAuth) && <Loader />}
+				{isLoading && <Loader />}
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Field
@@ -62,14 +77,14 @@ const Auth: FC = () => {
 						required={
 							'*Password is required! It must include: 0-9, a-Z, A-Z, !@#$%^&*'
 						}
-						pattern={
-							/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{4,}/g
-						}
+						// pattern={
+						// 	/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{4,}/g
+						// }
 					/>
 
 					<div className={styles.wrapperButtons}>
-						<Button clickHandler={() => setType('auth')}>Sing in</Button>
-						<Button clickHandler={() => setType('reg')}>Sing up</Button>
+						<Button clickHandler={() => setType('login')}>Sing in</Button>
+						<Button clickHandler={() => setType('register')}>Sing up</Button>
 					</div>
 				</form>
 			</div>
