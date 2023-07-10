@@ -1,6 +1,8 @@
 import cn from 'clsx'
 import { FC, ReactNode } from 'react'
 
+import { useCheckToken } from '../hooks/useCheckToken'
+
 import Meta from '../seo/Meta'
 import { IMeta } from '../seo/meta.interface'
 
@@ -23,6 +25,8 @@ const Layout: FC<ILayoutProps> = ({
 	children,
 	meta
 }) => {
+	useCheckToken()
+
 	return (
 		<>
 			<Meta title={meta.title} description={meta.description}>

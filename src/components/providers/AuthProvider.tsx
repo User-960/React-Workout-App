@@ -10,17 +10,22 @@ import { createContext } from 'react'
 
 import NotFound from '../screens/not-found/NotFound'
 
+import { ENUSER } from '@/config/app.constants'
 import { TypeComponentAuthFields } from '@/interfaces/page.interface'
 import { TypeUser } from '@/interfaces/user.interface'
 
 type TypeContext = {
 	user: TypeUser
 	setUser: Dispatch<SetStateAction<TypeUser>>
+	isAuth: boolean
+	setIsAuth: Dispatch<SetStateAction<boolean>>
 }
 
 export const AuthContext = createContext<TypeContext>({
 	user: null,
-	setUser: () => {}
+	setUser: () => {},
+	isAuth: false,
+	setIsAuth: () => {}
 })
 
 const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
@@ -28,11 +33,13 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
 	Component: { isOnlyUser }
 }) => {
 	const [user, setUser] = useState<TypeUser>(null)
+	const [isAuth, setIsAuth] = useState<boolean>(!!Cookies.get(ENUSER.TOKEN))
 
-	if (isOnlyUser && !user) return <NotFound />
+	// if (isOnlyUser && !user) return <NotFound />
+	if (isOnlyUser && !isAuth) return <NotFound />
 
 	return (
-		<AuthContext.Provider value={{ user, setUser }}>
+		<AuthContext.Provider value={{ user, setUser, isAuth, setIsAuth }}>
 			{children}
 		</AuthContext.Provider>
 	)

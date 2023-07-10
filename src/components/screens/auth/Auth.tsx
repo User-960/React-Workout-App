@@ -1,9 +1,11 @@
-import { FC } from 'react'
+import { useRouter } from 'next/router'
+import { FC, useEffect } from 'react'
 
 import Button from '@/components/ui/button/Button'
 import Field from '@/components/ui/field/Field'
 import Loader from '@/components/ui/loader/Loader'
 
+import { useAuth } from '@/components/hooks/useAuth'
 import { useAuthPage } from '@/components/hooks/useAuthPage'
 
 import Layout from '@/components/layout/Layout'
@@ -19,6 +21,15 @@ const Auth: FC = () => {
 
 	const { setType, register, handleSubmit, errors, isLoading, onSubmit } =
 		useAuthPage()
+
+	const { isAuth } = useAuth()
+	const { push } = useRouter()
+
+	useEffect(() => {
+		if (isAuth) {
+			push('/')
+		}
+	}, [isAuth])
 
 	return (
 		<>

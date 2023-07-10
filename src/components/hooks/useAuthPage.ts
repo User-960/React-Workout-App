@@ -1,15 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { useAuth } from './useAuth'
 import { IAuthFields } from '@/interfaces/form.interface'
 import AuthService from '@/services/auth.service'
 
 export const useAuthPage = () => {
 	const [type, setType] = useState('login')
-
 	const { push } = useRouter()
 
 	const {
@@ -21,14 +19,6 @@ export const useAuthPage = () => {
 		mode: 'onChange'
 	})
 
-	const { user } = useAuth()
-
-	useEffect(() => {
-		if (user) {
-			push('/')
-		}
-	}, [user])
-
 	const { mutateAsync, isLoading } = useMutation(
 		['auth'],
 		({ email, password }: IAuthFields) =>
@@ -36,6 +26,9 @@ export const useAuthPage = () => {
 		{
 			onSuccess: data => {
 				reset()
+				setTimeout(() => {
+					push('/')
+				}, 2000)
 			}
 		}
 	)
