@@ -13,16 +13,17 @@ interface IPropsHeader {
 	backLink: string
 }
 
-const Header: FC<IPropsHeader> = ({ backLink }) => {
-	const { isAuth } = useAuth()
+const Header: FC<IPropsHeader> = ({ backLink = '' }) => {
 	const { pathname, push } = useRouter()
+
+	const { isAuth } = useAuth()
 
 	return (
 		<header className={styles.header}>
-			{pathname !== '/' ? (
+			{pathname !== '/' || !isAuth ? (
 				<button
 					onClick={() => {
-						push(backLink || '/')
+						push(isAuth ? backLink : '/auth')
 					}}
 				>
 					<IoMdArrowBack fill='#fff' fontSize={30} />
@@ -36,8 +37,7 @@ const Header: FC<IPropsHeader> = ({ backLink }) => {
 					<SlUser fill='#fff' fontSize={30} />
 				</button>
 			)}
-
-			<Hamburger />
+			{isAuth && <Hamburger />}
 		</header>
 	)
 }

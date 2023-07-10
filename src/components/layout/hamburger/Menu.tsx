@@ -1,16 +1,28 @@
 import cn from 'clsx'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
+
+import { useAuth } from '@/components/hooks/useAuth'
 
 import styles from './Hamburger.module.scss'
 import { menu } from './menu.data'
+import { ENUSER } from '@/config/app.constants'
 
 interface IMenuProps {
 	isShow: boolean
+	setIsShow: Dispatch<SetStateAction<boolean>>
 }
 
-const Menu: FC<IMenuProps> = ({ isShow }) => {
-	const logoutHandler = () => {}
+const Menu: FC<IMenuProps> = ({ isShow, setIsShow }) => {
+	const { setIsAuth } = useAuth()
+
+	const logoutHandler = () => {
+		Cookies.remove(ENUSER.TOKEN)
+		setIsAuth(false)
+		setIsShow(false)
+	}
+
 	return (
 		<nav className={cn(styles.menu, { [styles.show]: isShow })}>
 			<ul>

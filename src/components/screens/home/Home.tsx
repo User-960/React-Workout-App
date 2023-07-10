@@ -12,7 +12,6 @@ import styles from './Home.module.scss'
 
 const Home: FC = () => {
 	const { push } = useRouter()
-	const { isAuth } = useAuth()
 
 	const meta: IMeta = {
 		title: 'Home',
@@ -23,10 +22,10 @@ const Home: FC = () => {
 		<Layout meta={meta} bgImage='/images/home-bg.jpg'>
 			<Button
 				clickHandler={() => {
-					push(isAuth ? '/new-workout' : '/auth')
+					push('/new-workout')
 				}}
 			>
-				{isAuth ? 'New' : 'Sign in'}
+				New
 			</Button>
 			<h1 className={styles.heading}>EXERCISES FOR THE SHOULDERS</h1>
 			{/*TODO: Counters*/}

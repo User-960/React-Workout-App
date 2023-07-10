@@ -14,7 +14,7 @@ const Hamburger: FC = () => {
 				{isShow ? <CgClose /> : <CgMenuRight />}
 			</button>
 			<menu ref={ref}>
-				<Menu isShow={isShow} />
+				<Menu isShow={isShow} setIsShow={setIsShow} />
 			</menu>
 		</div>
 	)
