@@ -12,7 +12,7 @@ import styles from './Home.module.scss'
 
 const Home: FC = () => {
 	const { push } = useRouter()
-	const { user, isAuth } = useAuth()
+	const { isAuth } = useAuth()
 
 	const meta: IMeta = {
 		title: 'Home',
@@ -26,7 +26,7 @@ const Home: FC = () => {
 					push(isAuth ? '/new-workout' : '/auth')
 				}}
 			>
-				{user ? 'New' : 'Sign in'}
+				{isAuth ? 'New' : 'Sign in'}
 			</Button>
 			<h1 className={styles.heading}>EXERCISES FOR THE SHOULDERS</h1>
 			{/*TODO: Counters*/}

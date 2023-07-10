@@ -35,7 +35,6 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
 	const [user, setUser] = useState<TypeUser>(null)
 	const [isAuth, setIsAuth] = useState<boolean>(!!Cookies.get(ENUSER.TOKEN))
 
-	// if (isOnlyUser && !user) return <NotFound />
 	if (isOnlyUser && !isAuth) return <NotFound />
 
 	return (

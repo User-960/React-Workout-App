@@ -22,15 +22,6 @@ const Auth: FC = () => {
 	const { setType, register, handleSubmit, errors, isLoading, onSubmit } =
 		useAuthPage()
 
-	const { isAuth } = useAuth()
-	const { push } = useRouter()
-
-	useEffect(() => {
-		if (isAuth) {
-			push('/')
-		}
-	}, [isAuth])
-
 	return (
 		<>
 			<Layout meta={meta} heading='Sign in' bgImage='/images/auth-bg.png' />
