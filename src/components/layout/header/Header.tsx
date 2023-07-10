@@ -20,24 +20,28 @@ const Header: FC<IPropsHeader> = ({ backLink = '' }) => {
 
 	return (
 		<header className={styles.header}>
-			{pathname !== '/' || !isAuth ? (
-				<button
-					onClick={() => {
-						push(isAuth ? backLink : '/auth')
-					}}
-				>
-					<IoMdArrowBack fill='#fff' fontSize={30} />
-				</button>
-			) : (
-				<button
-					onClick={() => {
-						push('/profile')
-					}}
-				>
-					<SlUser fill='#fff' fontSize={30} />
-				</button>
+			{isAuth && (
+				<>
+					{pathname === '/' && isAuth ? (
+						<button
+							onClick={() => {
+								push('/profile')
+							}}
+						>
+							<SlUser fill='#fff' fontSize={30} />
+						</button>
+					) : (
+						<button
+							onClick={() => {
+								push(isAuth ? backLink : '/auth')
+							}}
+						>
+							<IoMdArrowBack fill='#fff' fontSize={30} />
+						</button>
+					)}
+					<Hamburger />
+				</>
 			)}
-			{isAuth && <Hamburger />}
 		</header>
 	)
 }

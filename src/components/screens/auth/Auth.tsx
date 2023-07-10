@@ -55,8 +55,8 @@ const Auth: FC = () => {
 					/>
 
 					<div className={styles.wrapperButtons}>
-						<Button clickHandler={() => setType('login')}>Sing in</Button>
-						<Button clickHandler={() => setType('register')}>Sing up</Button>
+						<Button clickHandler={() => setType('login')}>Sign in</Button>
+						<Button clickHandler={() => setType('register')}>Sign up</Button>
 					</div>
 				</form>
 			</div>

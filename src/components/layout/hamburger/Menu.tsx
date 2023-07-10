@@ -35,7 +35,7 @@ const Menu: FC<IMenuProps> = ({ isShow, setIsShow }) => {
 					</li>
 				))}
 				<li>
-					<button onClick={logoutHandler}>Log out</button>
+					<button onClick={logoutHandler}>Logout</button>
 				</li>
 			</ul>
 		</nav>
