@@ -1,6 +1,7 @@
 import cn from 'clsx'
 import Cookies from 'js-cookie'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Dispatch, FC, SetStateAction } from 'react'
 
 import { useAuth } from '@/components/hooks/useAuth'
@@ -16,11 +17,13 @@ interface IMenuProps {
 
 const Menu: FC<IMenuProps> = ({ isShow, setIsShow }) => {
 	const { setIsAuth } = useAuth()
+	const { push } = useRouter()
 
 	const logoutHandler = () => {
 		Cookies.remove(ENUSER.TOKEN)
 		setIsAuth(false)
 		setIsShow(false)
+		push('/auth')
 	}
 
 	return (

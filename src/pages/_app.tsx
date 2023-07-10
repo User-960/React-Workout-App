@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
+import dynamic from 'next/dynamic'
 
 import AuthProvider from '@/components/providers/AuthProvider'
 
@@ -16,12 +17,19 @@ const queryClient = new QueryClient({
 	}
 })
 
+const DynamicAuthProvider = dynamic(
+	() => import('../components/providers/AuthProvider'),
+	{
+		ssr: false
+	}
+)
+
 export default function App({ Component, pageProps }: TypeApp) {
 	return (
-		<AuthProvider Component={Component}>
+		<DynamicAuthProvider Component={Component}>
 			<QueryClientProvider client={queryClient}>
 				<Component {...pageProps} />
 			</QueryClientProvider>
-		</AuthProvider>
+		</DynamicAuthProvider>
 	)
 }
