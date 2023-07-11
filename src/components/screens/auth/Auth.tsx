@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import Button from '@/components/ui/button/Button'
-import Field from '@/components/ui/field/Field'
+import AuthField from '@/components/ui/field/AuthField/AuthField'
 import Loader from '@/components/ui/loader/Loader'
 
-import { useAuth } from '@/components/hooks/useAuth'
 import { useAuthPage } from '@/components/hooks/useAuthPage'
 
 import Layout from '@/components/layout/Layout'
@@ -29,7 +27,7 @@ const Auth: FC = () => {
 				{isLoading && <Loader />}
 
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<Field
+					<AuthField
 						type='text'
 						placeholder='Enter email'
 						error={errors?.email?.message}
@@ -40,7 +38,7 @@ const Auth: FC = () => {
 							/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
 						}
 					/>
-					<Field
+					<AuthField
 						type='password'
 						placeholder='Enter password'
 						error={errors?.password?.message}

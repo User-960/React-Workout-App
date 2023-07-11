@@ -1,17 +1,23 @@
 import { FC } from 'react'
-import { Message, Path, UseFormRegister, ValidationRule } from 'react-hook-form'
+import {
+	Message,
+	Path,
+	UseFormRegister,
+	Validate,
+	ValidationRule
+} from 'react-hook-form'
 
-import styles from './Field.module.scss'
-import { IAuthFields } from '@/interfaces/form.interface'
+import styles from './ExerciseField.module.scss'
+import { IExerciseFields } from '@/interfaces/form.interface'
 
 interface IFieldProps {
 	placeholder: string
 	type: string
-	register: UseFormRegister<IAuthFields>
-	name: Path<IAuthFields>
+	register: UseFormRegister<IExerciseFields>
+	name: Path<IExerciseFields>
 	required: Message | ValidationRule<boolean>
-	pattern?: ValidationRule<RegExp>
 	error?: string
+	valueAsNumber?: boolean
 }
 
 const Field: FC<IFieldProps> = ({
@@ -21,17 +27,17 @@ const Field: FC<IFieldProps> = ({
 	placeholder,
 	type,
 	error,
-	pattern
+	valueAsNumber
 }) => {
 	return (
 		<div style={{ marginBottom: '1rem' }}>
 			<input
 				placeholder={placeholder}
 				type={type}
-				{...register(name, { required, pattern })}
+				{...register(name, { required, valueAsNumber })}
 				className={styles.input}
 			/>
-			{error && <div className={styles.error}>{error}</div>}
+			{error && <div className='error'>{error}</div>}
 		</div>
 	)
 }

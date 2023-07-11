@@ -9,7 +9,11 @@ interface IButtonProps {
 	children?: ReactNode
 }
 
-const Button: FC<IButtonProps> = ({ clickHandler, size = '', children }) => {
+const Button: FC<IButtonProps> = ({
+	clickHandler = null,
+	size = '',
+	children
+}) => {
 	return (
 		<div className={styles.wrapper}>
 			<button

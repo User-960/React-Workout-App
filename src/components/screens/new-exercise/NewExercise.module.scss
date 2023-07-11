@@ -15,7 +15,7 @@
 		transition: border-bottom 0.4s ease;
 		opacity: 0.4s;
 
-		&:active {
+		&.active {
 			opacity: 0.6;
 			border-color: $accent;
 		}

@@ -1,9 +1,11 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+import { SERVER_URL } from '../../const'
+
 import { ENUSER } from '@/config/app.constants'
 
-const API_URL = 'http://localhost:5000/api'
+const API_URL = `${SERVER_URL}/api`
 
 export const $axios = axios.create({
 	baseURL: API_URL,

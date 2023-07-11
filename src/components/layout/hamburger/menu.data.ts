@@ -9,8 +9,12 @@ export const menu: IMenuItem[] = [
 		link: '/workouts'
 	},
 	{
-		title: 'Create new',
+		title: 'Create new workout',
 		link: '/new-workout'
+	},
+	{
+		title: 'Create new exercise',
+		link: '/new-exercise'
 	},
 	{
 		title: 'Profile',
