@@ -10,7 +10,7 @@ import Hamburger from '../hamburger/Hamburger'
 import styles from './Header.module.scss'
 
 interface IPropsHeader {
-	backLink: string
+	backLink?: string
 }
 
 const Header: FC<IPropsHeader> = ({ backLink = '' }) => {
