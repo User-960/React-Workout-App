@@ -40,6 +40,7 @@ const Profile: FC = () => {
 								width={56}
 								height={56}
 								priority
+								draggable={false}
 							/>
 							<h1 className={stylesLayout.heading}>{data?.email}</h1>
 						</>
@@ -56,7 +57,13 @@ const Profile: FC = () => {
 						<div key={`image_${index}`}>
 							<div className={styles.heading}>
 								{index === 1 ? 'After' : 'Before'}
-								<Image src={image} alt='photo' width={200} height={300} />
+								<Image
+									src={image}
+									alt='photo'
+									width={200}
+									height={300}
+									draggable={false}
+								/>
 							</div>
 						</div>
 					))}
