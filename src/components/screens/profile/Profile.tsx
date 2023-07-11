@@ -11,6 +11,7 @@ import { IMeta } from '@/components/seo/meta.interface'
 import stylesLayout from '../../layout/Layout.module.scss'
 
 import styles from './Profile.module.scss'
+import Statistics from './statistics/Statistics'
 import { useProfile } from './useProfile'
 
 const Profile: FC = () => {
@@ -27,7 +28,7 @@ const Profile: FC = () => {
 				className={cn(stylesLayout.wrapper, stylesLayout.otherPage)}
 				style={{ backgroundImage: `url(/images/profile-bg.jpg)`, height: 356 }}
 			>
-				<Header backLink={'/'} />
+				<Header />
 
 				<div className={styles.center}>
 					{isLoading ? (
@@ -46,6 +47,7 @@ const Profile: FC = () => {
 						</>
 					)}
 				</div>
+				<Statistics />
 			</div>
 
 			<div

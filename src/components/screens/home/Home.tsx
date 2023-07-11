@@ -3,10 +3,10 @@ import { FC } from 'react'
 
 import Button from '@/components/ui/button/Button'
 
-import { useAuth } from '@/components/hooks/useAuth'
-
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
+
+import Statistics from '../profile/statistics/Statistics'
 
 import styles from './Home.module.scss'
 
@@ -28,7 +28,7 @@ const Home: FC = () => {
 				New
 			</Button>
 			<h1 className={styles.heading}>EXERCISES FOR THE SHOULDERS</h1>
-			{/*TODO: Counters*/}
+			<Statistics />
 		</Layout>
 	)
 }

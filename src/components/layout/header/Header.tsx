@@ -13,7 +13,7 @@ interface IPropsHeader {
 	backLink?: string
 }
 
-const Header: FC<IPropsHeader> = ({ backLink = '' }) => {
+const Header: FC<IPropsHeader> = ({ backLink = '/' }) => {
 	const { pathname, push } = useRouter()
 
 	const { isAuth } = useAuth()
