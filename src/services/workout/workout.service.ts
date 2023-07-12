@@ -1,5 +1,5 @@
 import { $axios } from '@/api/api'
-import { IExercise } from '@/interfaces/exercise.interface'
+import { IWorkout } from '@/interfaces/workout.interface'
 
 const WORKOUTS: string = '/workouts'
 
@@ -13,7 +13,7 @@ class WorkoutService {
 	}
 
 	async create(name: string, exerciseIds: number[]) {
-		return $axios.post<any>(WORKOUTS, {
+		return $axios.post<IWorkout>(WORKOUTS, {
 			name,
 			exerciseIds
 		})
