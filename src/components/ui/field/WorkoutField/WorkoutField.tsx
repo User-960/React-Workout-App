@@ -3,19 +3,19 @@ import { Message, Path, UseFormRegister, ValidationRule } from 'react-hook-form'
 
 import styles from '../Field.module.scss'
 
-import { IExerciseFields } from '@/interfaces/form.interface'
+import { IWorkoutFields } from '@/interfaces/form.interface'
 
-interface IExerciseFieldProps {
+interface IWorkoutFieldProps {
 	placeholder: string
 	type: string
-	register: UseFormRegister<IExerciseFields>
-	name: Path<IExerciseFields>
+	register: UseFormRegister<IWorkoutFields>
+	name: Path<IWorkoutFields>
 	required: Message | ValidationRule<boolean>
 	error?: string
 	valueAsNumber?: boolean
 }
 
-const ExerciseField: FC<IExerciseFieldProps> = ({
+const WorkoutField: FC<IWorkoutFieldProps> = ({
 	register,
 	name,
 	required,
@@ -37,4 +37,4 @@ const ExerciseField: FC<IExerciseFieldProps> = ({
 	)
 }
 
-export default ExerciseField
+export default WorkoutField

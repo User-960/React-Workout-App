@@ -5,7 +5,7 @@ import styles from '../Field.module.scss'
 
 import { IAuthFields } from '@/interfaces/form.interface'
 
-interface IFieldProps {
+interface IAuthFieldProps {
 	placeholder: string
 	type: string
 	register: UseFormRegister<IAuthFields>
@@ -15,7 +15,7 @@ interface IFieldProps {
 	error?: string
 }
 
-const Field: FC<IFieldProps> = ({
+const AuthField: FC<IAuthFieldProps> = ({
 	register,
 	name,
 	required,
@@ -37,4 +37,4 @@ const Field: FC<IFieldProps> = ({
 	)
 }
 
-export default Field
+export default AuthField

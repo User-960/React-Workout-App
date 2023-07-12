@@ -8,3 +8,8 @@ export interface IExerciseFields {
 	times: number
 	iconPath: string
 }
+
+export interface IWorkoutFields {
+	name: string
+	exerciseIds: number[]
+}
