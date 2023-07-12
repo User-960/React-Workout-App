@@ -1,14 +1,15 @@
 import { $axios } from '@/api/api'
+import { IExercise } from '@/interfaces/exercise.interface'
 
 const EXERCISES: string = '/exercises'
 
 class ExerciseService {
 	async getAll() {
-		return $axios.get(EXERCISES)
+		return $axios.get<IExercise[]>(EXERCISES)
 	}
 
 	async create(name: string, times: number, iconPath: string) {
-		return $axios.post<any>(EXERCISES, {
+		return $axios.post<IExercise>(EXERCISES, {
 			name,
 			times,
 			iconPath

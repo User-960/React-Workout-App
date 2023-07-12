@@ -7,7 +7,8 @@ import {
 	ValidationRule
 } from 'react-hook-form'
 
-import styles from './ExerciseField.module.scss'
+import styles from '../Field.module.scss'
+
 import { IExerciseFields } from '@/interfaces/form.interface'
 
 interface IFieldProps {

@@ -8,8 +8,3 @@ export interface IExerciseFields {
 	times: number
 	iconPath: string
 }
-
-export interface IFields {
-	auth: IAuthFields
-	exercise: IExerciseFields
-}
