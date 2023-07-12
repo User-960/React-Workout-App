@@ -27,6 +27,7 @@ export const useNewWorkoutPage = () => {
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
 		reset
 	} = useForm<IWorkoutFields>({
@@ -41,12 +42,13 @@ export const useNewWorkoutPage = () => {
 		() => ({
 			register,
 			handleSubmit,
+			control,
 			errors,
 			errorState,
 			isSuccess,
 			isLoading,
 			onSubmit
 		}),
-		[errors, isLoading]
+		[errors, isLoading, isSuccess]
 	)
 }

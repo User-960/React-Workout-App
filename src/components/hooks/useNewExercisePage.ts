@@ -49,6 +49,6 @@ export const useNewExercisePage = () => {
 			isLoading,
 			onSubmit
 		}),
-		[errors, isLoading]
+		[errors, isLoading, isSuccess]
 	)
 }

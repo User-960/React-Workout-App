@@ -1,5 +1,6 @@
 import cn from 'clsx'
 import { FC } from 'react'
+import { Controller } from 'react-hook-form'
 
 import Alert from '@/components/ui/alert/Alert'
 import Button from '@/components/ui/button/Button'
@@ -11,8 +12,6 @@ import { useNewWorkoutPage } from '@/components/hooks/useNewWorkoutPage'
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
 
-import styles from './NewExercise.module.scss'
-
 const NewWorkout: FC = () => {
 	const meta: IMeta = {
 		title: 'New Workout',
@@ -22,6 +21,7 @@ const NewWorkout: FC = () => {
 	const {
 		register,
 		handleSubmit,
+		control,
 		errors,
 		errorState,
 		isLoading,
@@ -39,7 +39,7 @@ const NewWorkout: FC = () => {
 			<div className='wrapper-inner-page'>
 				{isLoading && <Loader />}
 				{errorState && <Alert type={'error'} text={errorState} />}
-				{isSuccess && <Alert text='Workout is created' />}
+				{isSuccess && <Alert text='Workout created successfully' />}
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<WorkoutField
@@ -51,7 +51,7 @@ const NewWorkout: FC = () => {
 						required={'*Name is required!'}
 					/>
 
-					<WorkoutField
+					{/* <WorkoutField
 						type='number'
 						placeholder='Enter exercises'
 						error={errors?.exerciseIds?.message}
@@ -59,7 +59,13 @@ const NewWorkout: FC = () => {
 						register={register}
 						required={'*Exercises is required and must be a number!'}
 						valueAsNumber={true}
-					/>
+					/> */}
+
+					{/* <Controller 
+            name='exerciseIds' 
+            control={control} 
+            render={({ field: { onChange, value }, fieldState: { error } }) => ()} 
+          /> */}
 
 					<Button clickHandler={() => {}}>Create new</Button>
 				</form>

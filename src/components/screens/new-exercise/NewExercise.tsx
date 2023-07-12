@@ -48,7 +48,7 @@ const NewExercise: FC = () => {
 			<div className='wrapper-inner-page'>
 				{isLoading && <Loader />}
 				{errorState && <Alert type={'error'} text={errorState} />}
-				{isSuccess && <Alert text='Exercise is created' />}
+				{isSuccess && <Alert text='Exercise created successfully' />}
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<ExerciseField
