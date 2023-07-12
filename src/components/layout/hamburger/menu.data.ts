@@ -5,19 +5,23 @@ interface IMenuItem {
 
 export const menu: IMenuItem[] = [
 	{
-		title: 'Workouts',
-		link: '/workouts'
-	},
-	{
-		title: 'Create new workout',
+		title: 'New workout',
 		link: '/new-workout'
 	},
 	{
-		title: 'Create new exercise',
+		title: 'New exercise',
 		link: '/new-exercise'
 	},
 	{
 		title: 'Profile',
 		link: '/profile'
+	},
+	{
+		title: 'Workouts',
+		link: '/workouts'
 	}
+	// {
+	// 	title: 'Workout',
+	// 	link: '/workout'
+	// }
 ]
