@@ -35,7 +35,8 @@ export const useNewWorkoutPage = () => {
 	})
 
 	const onSubmit: SubmitHandler<IWorkoutFields> = async data => {
-		await mutateAsync(data)
+		console.log(data)
+		// await mutateAsync(data)
 	}
 
 	return useMemo(
