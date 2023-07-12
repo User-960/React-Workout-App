@@ -1,7 +1,7 @@
 import cn from 'clsx'
 import Image from 'next/image'
 import { FC } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 
 import Alert from '@/components/ui/alert/Alert'
 import Button from '@/components/ui/button/Button'
@@ -22,8 +22,8 @@ const data: string[] = ['chest', 'shoulders', 'biceps', 'legs', 'hit', 'back']
 
 const NewExercise: FC = () => {
 	const meta: IMeta = {
-		title: 'Home',
-		description: 'Sport is a life'
+		title: 'New Exercise',
+		description: 'Create new exercise'
 	}
 
 	const {

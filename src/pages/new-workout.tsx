@@ -1,9 +1,9 @@
-import Profile from '@/components/screens/profile/Profile'
+import NewWorkout from '@/components/screens/new-workout/NewWorkout'
 
 import { NextPageAuth } from '@/interfaces/page.interface'
 
 const NewWorkoutPage: NextPageAuth = () => {
-	return <div>New Workout</div>
+	return <NewWorkout />
 }
 
 NewWorkoutPage.isOnlyUser = true
