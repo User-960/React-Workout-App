@@ -5,7 +5,7 @@ const EXERCISES: string = '/exercises'
 
 class ExerciseService {
 	async getAll() {
-		return $axios.get<IExercise[]>(EXERCISES)
+		return $axios.get<IExercise[], any>(EXERCISES)
 	}
 
 	async create(name: string, times: number, iconPath: string) {

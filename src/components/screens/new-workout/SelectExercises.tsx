@@ -2,18 +2,15 @@ import { FC, useState } from 'react'
 import { Control, Controller } from 'react-hook-form'
 import ReactSelect, { OnChangeValue, Props } from 'react-select'
 
+import Loader from '@/components/ui/loader/Loader'
+
+import { useListExercises } from '@/components/hooks/useListExercises'
+
 import { IExercise } from '@/interfaces/exercise.interface'
 import { IWorkoutFields } from '@/interfaces/form.interface'
 
 // export const getValue = (value: string, data: any) =>
 // 	value ? data.find((option: any) => option.value === value) : ''
-
-// data.map(
-// 						(exercise: IExercise): IOption => ({
-// 							value: exercise.id,
-// 							label: exercise.name
-// 						})
-// 					)
 
 const options: IOption[] = [
 	{
@@ -35,19 +32,16 @@ interface IOption {
 	label: string
 }
 
-interface ISelectExercisesProps extends Props<IOption | any> {
+interface ISelectExercisesProps extends Props<any> {
 	control: Control<IWorkoutFields, any>
-	data: IExercise[]
 }
 
-const SelectExercises: FC<ISelectExercisesProps> = ({
-	control,
-	data,
-	options = []
-}) => {
-	const [currentExercises, setCurrentExercises] = useState<string[]>(['', ''])
+const SelectExercises: FC<ISelectExercisesProps> = ({ control }) => {
+	const [currentExercises, setCurrentExercises] = useState<string[]>([])
 
-	const transformData = (data: IExercise[]) =>
+	const { data, isLoading } = useListExercises()
+
+	const transformDataToOptions = (data: IExercise[]) =>
 		data.map((exercise: IExercise) => ({
 			value: exercise.id,
 			label: exercise.name
@@ -55,13 +49,17 @@ const SelectExercises: FC<ISelectExercisesProps> = ({
 
 	const getValue = () => {
 		return currentExercises
-			? options.filter(e => currentExercises.indexOf(e.value) >= 0)
+			? transformDataToOptions(data).filter(
+					(option: IOption) => currentExercises.indexOf(option.label) >= 0
+			  )
 			: []
 	}
 
 	const onChange = (newValue: OnChangeValue<IOption, boolean>) => {
 		setCurrentExercises((newValue as IOption[]).map(option => option.label))
 	}
+
+	if (isLoading) return <Loader />
 
 	return (
 		<Controller
@@ -72,7 +70,7 @@ const SelectExercises: FC<ISelectExercisesProps> = ({
 					isMulti
 					classNamePrefix='select2-selection'
 					placeholder='Exercises...'
-					options={transformData(data)}
+					options={transformDataToOptions(data)}
 					value={getValue()}
 					onChange={onChange}
 				/>

@@ -1,4 +1,5 @@
 import cn from 'clsx'
+import Link from 'next/link'
 import { FC } from 'react'
 import { Controller } from 'react-hook-form'
 
@@ -11,6 +12,8 @@ import { useNewWorkoutPage } from '@/components/hooks/useNewWorkoutPage'
 
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
+
+import SelectExercises from './SelectExercises'
 
 const NewWorkout: FC = () => {
 	const meta: IMeta = {
@@ -51,23 +54,13 @@ const NewWorkout: FC = () => {
 						required={'*Name is required!'}
 					/>
 
-					{/* <WorkoutField
-						type='number'
-						placeholder='Enter exercises'
-						error={errors?.exerciseIds?.message}
-						name='exerciseIds'
-						register={register}
-						required={'*Exercises is required and must be a number!'}
-						valueAsNumber={true}
-					/> */}
+					<Link href={'/new-exercise'} className='dark-link'>
+						Add new exercise
+					</Link>
 
-					{/* <Controller 
-            name='exerciseIds' 
-            control={control} 
-            render={({ field: { onChange, value }, fieldState: { error } }) => ()} 
-          /> */}
+					<SelectExercises control={control} isMulti />
 
-					<Button clickHandler={() => {}}>Create new</Button>
+					<Button>Create</Button>
 				</form>
 			</div>
 		</>
