@@ -7,12 +7,7 @@ import Loader from '@/components/ui/loader/Loader'
 import { useListExercises } from '@/components/hooks/useListExercises'
 
 import { IExercise } from '@/interfaces/exercise.interface'
-import { IWorkoutFields } from '@/interfaces/form.interface'
-
-interface IOption {
-	value: number
-	label: string
-}
+import { IWorkoutFields, IWorkoutOption } from '@/interfaces/form.interface'
 
 interface ISelectExercisesProps extends Props<any> {
 	control: Control<IWorkoutFields, any>
@@ -40,17 +35,23 @@ const SelectExercises: FC<ISelectExercisesProps> = ({ control }) => {
 		<Controller
 			name='exerciseIds'
 			control={control}
-			render={({ field: { value, onChange } }) => (
-				<ReactSelect
-					isMulti
-					classNamePrefix='select2-selection'
-					placeholder='Exercises...'
-					options={transformDataToOptions(data)}
-					value={getValue(value)}
-					onChange={newValue =>
-						onChange((newValue as IOption | any).map((value: number) => value))
-					}
-				/>
+			rules={{ required: 'Exercise is required!' }}
+			render={({ field: { value, onChange }, fieldState: { error } }) => (
+				<div>
+					<ReactSelect
+						isMulti
+						classNamePrefix='select2-selection'
+						placeholder='Exercises...'
+						options={transformDataToOptions(data)}
+						value={getValue(value)}
+						onChange={newValue =>
+							onChange(
+								(newValue as IWorkoutOption | any).map((value: number) => value)
+							)
+						}
+					/>
+					{error && <div className='error'>{error.message}</div>}
+				</div>
 			)}
 		/>
 	)

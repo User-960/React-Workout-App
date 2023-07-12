@@ -2,7 +2,10 @@ import { useMutation } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { IWorkoutFields } from '@/interfaces/form.interface'
+import {
+	IWorkoutFields,
+	IWorkoutFieldsSelect
+} from '@/interfaces/form.interface'
 import WorkoutService from '@/services/workout/workout.service'
 
 export const useNewWorkoutPage = () => {
@@ -34,9 +37,13 @@ export const useNewWorkoutPage = () => {
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IWorkoutFields> = async data => {
-		console.log(data)
-		// await mutateAsync(data)
+	const onSubmit: SubmitHandler<
+		IWorkoutFieldsSelect | IWorkoutFields
+	> = async data => {
+		await mutateAsync({
+			name: data.name,
+			exerciseIds: data.exerciseIds.map((ex: any) => ex.value)
+		})
 	}
 
 	return useMemo(

@@ -13,3 +13,13 @@ export interface IWorkoutFields {
 	name: string
 	exerciseIds: number[]
 }
+
+export interface IWorkoutFieldsSelect {
+	name: string
+	exerciseIds: IWorkoutOption[]
+}
+
+export interface IWorkoutOption {
+	value: number
+	label: string
+}
