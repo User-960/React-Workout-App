@@ -22,6 +22,8 @@ const Workout: FC = () => {
 		}
 	)
 
+	/* TODO: Complete workout*/
+
 	return (
 		<>
 			<HeaderWorkout isSuccess={isSuccess} workoutLog={data} />
