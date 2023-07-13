@@ -5,22 +5,21 @@ export const WORKOUTS: string = '/workouts'
 
 class WorkoutService {
 	async getAll() {
-		const { data } = await $axios.get<IWorkout[]>(WORKOUTS)
-		return data
+		return await $axios.get<any>(WORKOUTS)
 
 		// const { data } = await $axios.get<IWorkout[]>(WORKOUTS)
 		// return data
 	}
 
 	async getById(id: string) {
-		// return $axios.get<IWorkout, any>(`${WORKOUTS}/${id}`)
+		return $axios.get<any>(`${WORKOUTS}/${id}`)
 
-		const { data } = await $axios.get<IWorkout[]>(`${WORKOUTS}`, {
-			params: {
-				id
-			}
-		})
-		return data[0]
+		// const { data } = await $axios.get<IWorkout[]>(`${WORKOUTS}`, {
+		// 	params: {
+		// 		id
+		// 	}
+		// })
+		// return data[0]
 	}
 
 	async create(name: string, exerciseIds: number[]) {

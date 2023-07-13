@@ -5,4 +5,5 @@ export interface IExercise {
 	iconPath: string
 	createdAt: string
 	updatedAt: string
+	exerciseLogId?: number
 }

@@ -1,14 +1,15 @@
 import { WORKOUTS } from './workout.service'
 import { $axios } from '@/api/api'
+import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 
 const LOG = `${WORKOUTS}/log`
 
 class WorkoutLogService {
 	async getById(id: string) {
-		// return $axios.get<any>(`${LOG}/${id}`)
+		return $axios.get<any>(`${LOG}/${id}`)
 
-		const { data } = await $axios.get<any>(`${LOG}/${id}`)
-		return data
+		// const { data } = await $axios.get<IWorkoutLog[]>(`${LOG}/${id}`)
+		// return data[0]
 	}
 
 	async create(workoutId: number) {

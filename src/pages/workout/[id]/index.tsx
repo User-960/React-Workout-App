@@ -1,13 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
-
 import Workout from '@/components/screens/workout/Workout'
 
 import { NextPageAuth } from '@/interfaces/page.interface'
-import { IWorkoutDataSingle } from '@/interfaces/workout.interface'
-import WorkoutService from '@/services/workout/workout.service'
 
 const WorkoutPage: NextPageAuth = () => {
 	return <Workout />

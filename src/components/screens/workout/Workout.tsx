@@ -10,40 +10,34 @@ import Header from '@/components/layout/header/Header'
 import stylesLayout from '../../layout/Layout.module.scss'
 
 import styles from './Workout.module.scss'
-import { IWorkout, IWorkoutDataSingle } from '@/interfaces/workout.interface'
+import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 import WorkoutLogService from '@/services/workout/workout-log.service'
-import WorkoutService from '@/services/workout/workout.service'
 
 const Workout: FC = () => {
 	const { query } = useRouter()
 
-	const {
-		data: workoutLog,
-		isSuccess,
-		isLoading
-	} = useQuery(
-		['get workout', query.id],
+	const { data, isSuccess, isLoading } = useQuery(
+		['get workout log', query.id],
 		() => WorkoutLogService.getById(String(query.id)),
 		{
-			onSuccess: data => data
+			select: ({ data }): IWorkoutLog => data
 		}
 	)
 
 	return (
 		<>
 			<div
-				className={cn(styles.wrapper, stylesLayout.otherPage)}
+				className={cn(stylesLayout.wrapper, stylesLayout.otherPage)}
 				style={{
 					backgroundImage: `url('/images/workout-bg.jpg')`,
 					height: 356
 				}}
 			>
 				<Header backLink='/workouts' />
-
 				{isSuccess && (
 					<div>
-						<time className={styles.time}>{workoutLog.minutes + 'min'}</time>
-						<h1 className={styles.heading}>{workoutLog.workout.name}</h1>
+						<time className={styles.time}>{data?.minutes + ' min'}</time>
+						<h1 className={styles.heading}>{data?.workout.name}</h1>
 					</div>
 				)}
 			</div>
