@@ -9,7 +9,7 @@ import WorkoutService from '@/services/workout/workout.service'
 export const useWorkouts = () => {
 	const [errorState, setErrorState] = useState<string>('')
 
-	const { data, isSuccess } = useQuery(
+	const { data, isSuccess, isLoading } = useQuery(
 		['get workouts'],
 		() => WorkoutService.getAll(),
 		{
@@ -27,7 +27,6 @@ export const useWorkouts = () => {
 	const {
 		mutateAsync,
 		isSuccess: isSuccessMutate,
-		isLoading,
 		error
 	} = useMutation(
 		['Create new workout log'],
