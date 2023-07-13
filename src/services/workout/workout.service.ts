@@ -1,7 +1,7 @@
 import { $axios } from '@/api/api'
 import { IWorkout } from '@/interfaces/workout.interface'
 
-const WORKOUTS: string = '/workouts'
+export const WORKOUTS: string = '/workouts'
 
 class WorkoutService {
 	async getAll() {
