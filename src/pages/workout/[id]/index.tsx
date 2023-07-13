@@ -1,4 +1,4 @@
-import Workout from '@/components/screens/workout/Workout'
+import Workout from '@/components/screens/workouts/detail/Workout'
 
 import { NextPageAuth } from '@/interfaces/page.interface'
 

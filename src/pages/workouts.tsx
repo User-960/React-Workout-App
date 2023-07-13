@@ -1,4 +1,4 @@
-import ListWorkouts from '@/components/screens/workout/ListWorkouts'
+import ListWorkouts from '@/components/screens/workouts/list/ListWorkouts'
 
 import { NextPageAuth } from '@/interfaces/page.interface'
 

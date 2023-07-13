@@ -1,15 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import cn from 'clsx'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
 import Alert from '@/components/ui/alert/Alert'
 
-import Header from '@/components/layout/header/Header'
-
-import stylesLayout from '../../layout/Layout.module.scss'
-
-import styles from './Workout.module.scss'
+import HeaderWorkout from './HeaderWorkout'
 import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 import WorkoutLogService from '@/services/workout/workout-log.service'
 
@@ -26,21 +21,7 @@ const Workout: FC = () => {
 
 	return (
 		<>
-			<div
-				className={cn(stylesLayout.wrapper, stylesLayout.otherPage)}
-				style={{
-					backgroundImage: `url('/images/workout-bg.jpg')`,
-					height: 356
-				}}
-			>
-				<Header backLink='/workouts' />
-				{isSuccess && (
-					<div>
-						<time className={styles.time}>{data?.minutes + ' min'}</time>
-						<h1 className={styles.heading}>{data?.workout.name}</h1>
-					</div>
-				)}
-			</div>
+			<HeaderWorkout isSuccess={isSuccess} workoutLog={data} />
 
 			<div
 				className='wrapper-inner-page'

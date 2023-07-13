@@ -1,7 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { FC } from 'react'
 
-import Workout from './Workout'
+import Workout from '../detail/Workout'
+
 import { IWorkoutData } from '@/interfaces/workout.interface'
 
 const ListWorkouts: FC = () => {
