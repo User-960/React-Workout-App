@@ -1,7 +1,15 @@
+import { GetServerSideProps } from 'next'
 import { FC } from 'react'
 
+import Workout from './Workout'
+import { IWorkoutData } from '@/interfaces/workout.interface'
+
 const ListWorkouts: FC = () => {
-	return <div>ListWorkouts</div>
+	return (
+		<>
+			<h2>List of Workouts</h2>
+		</>
+	)
 }
 
 export default ListWorkouts

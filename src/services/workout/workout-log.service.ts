@@ -4,8 +4,11 @@ import { $axios } from '@/api/api'
 const LOG = `${WORKOUTS}/log`
 
 class WorkoutLogService {
-	async getById(id: number) {
-		return $axios.get<any>(`${LOG}/${id}`)
+	async getById(id: string) {
+		// return $axios.get<any>(`${LOG}/${id}`)
+
+		const { data } = await $axios.get<any>(`${LOG}/${id}`)
+		return data
 	}
 
 	async create(workoutId: number) {
