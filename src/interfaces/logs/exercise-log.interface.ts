@@ -8,5 +8,5 @@ export interface IExerciseLog {
 	userId: number
 	workoutLogId: number
 	exerciseId?: number
-	exercise: IExercise[]
+	exercise: IExercise
 }

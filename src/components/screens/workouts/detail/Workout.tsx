@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 
 import Alert from '@/components/ui/alert/Alert'
+import Loader from '@/components/ui/loader/Loader'
 
+import ExerciseItem from './ExerciseItem'
 import HeaderWorkout from './HeaderWorkout'
+import styles from './Workout.module.scss'
 import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 import WorkoutLogService from '@/services/workout/workout-log.service'
 
@@ -30,6 +33,21 @@ const Workout: FC = () => {
 				<div style={{ width: '90%', margin: '0 auto' }}>
 					{/* {errorCompleted && <Alert type='error' text={errorCompleted} />} */}
 				</div>
+
+				{isLoading ? (
+					<Loader />
+				) : (
+					<div className={styles.wrapper}>
+						{data?.exerciseLogs?.map((exerciseLog, index) => (
+							<Fragment key={exerciseLog.id}>
+								<ExerciseItem exerciseLog={exerciseLog} />
+								{index % 2 !== 0 && index !== data.exerciseLogs.length - 1 && (
+									<div className={styles.line} />
+								)}
+							</Fragment>
+						))}
+					</div>
+				)}
 			</div>
 		</>
 	)
