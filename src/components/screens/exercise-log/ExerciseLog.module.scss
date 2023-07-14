@@ -12,7 +12,7 @@
 
 .wrapper {
 	border-radius: 10px;
-	background-color: $dark-accent;
+	background-color: $hard-dark-accent;
 	margin: 0 auto;
 	width: 90%;
 
@@ -69,8 +69,8 @@
 
 			&:nth-child(2) {
 				width: 50%;
-				border-left: 1px solid $dark-accent;
-				border-right: 1px solid $dark-accent;
+				border-left: 1px solid rgba($dark-accent, 0.6);
+				border-right: 1px solid rgba($dark-accent, 0.6);
 				@media (max-width: $mobile) {
 					width: 40%;
 				}

@@ -24,7 +24,7 @@ const HeaderExerciseLog: FC<IHeaderExerciseLogProps> = ({
 			className={cn(stylesLayout.wrapper, stylesLayout.otherPage)}
 			style={{
 				backgroundImage: `url('/images/ex-bg-1.jpg')`,
-				height: 356
+				height: 300
 			}}
 		>
 			<Header

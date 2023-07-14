@@ -1,4 +1,4 @@
-import { IExercise } from '../exercise.interface'
+import { IExercise, ITimes } from '../exercise.interface'
 
 export interface IExerciseLog {
 	id: number
@@ -9,4 +9,5 @@ export interface IExerciseLog {
 	workoutLogId: number
 	exerciseId?: number
 	exercise: IExercise
+	times: ITimes[]
 }

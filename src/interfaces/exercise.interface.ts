@@ -7,3 +7,15 @@ export interface IExercise {
 	updatedAt: string
 	exerciseLogId: number
 }
+
+export interface ITimes {
+	id: number
+	createdAt: string
+	updatedAt: string
+	weight: number
+	repeat: number
+	isCompleted: boolean
+	exerciseLogId: number
+	prevWeight: number
+	prevRepeat: number
+}
