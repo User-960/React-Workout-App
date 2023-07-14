@@ -3,9 +3,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import { SERVER_URL } from '../../../../../const'
-
 import styles from './Workout.module.scss'
+import { SERVER_URL } from '@/config/app.constants'
 import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
 
 interface IExerciseItemProps {

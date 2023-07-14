@@ -4,10 +4,10 @@ import { FC } from 'react'
 
 import Header from '@/components/layout/header/Header'
 
-import { SERVER_URL } from '../../../../const'
 import stylesLayout from '../../layout/Layout.module.scss'
 
 import styles from './ExerciseLog.module.scss'
+import { SERVER_URL } from '@/config/app.constants'
 import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
 
 interface IHeaderExerciseLogProps {

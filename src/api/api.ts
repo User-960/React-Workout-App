@@ -1,9 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-import { SERVER_URL } from '../../const'
-
-import { ENUSER } from '@/config/app.constants'
+import { ENUSER, SERVER_URL } from '@/config/app.constants'
 
 const API_URL = `${SERVER_URL}/api`
 

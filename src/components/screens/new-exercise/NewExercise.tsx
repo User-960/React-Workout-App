@@ -13,10 +13,9 @@ import { useNewExercisePage } from '@/components/hooks/useNewExercisePage'
 import Layout from '@/components/layout/Layout'
 import { IMeta } from '@/components/seo/meta.interface'
 
-import { SERVER_URL } from '../../../../const'
-
 import styles from './NewExercise.module.scss'
 import { getIconPath } from './icon-path.util'
+import { SERVER_URL } from '@/config/app.constants'
 
 const data: string[] = ['chest', 'shoulders', 'biceps', 'legs', 'hit', 'back']
 
