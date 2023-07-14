@@ -11,3 +11,15 @@ export interface IExerciseLog {
 	exercise: IExercise
 	times: ITimes[]
 }
+
+export interface ITimesReq {
+	timeId: number
+	weight: number
+	height: number
+	isCompleted: boolean
+}
+
+export interface ICompleteReq {
+	exerciseLogId: number
+	isCompleted: boolean
+}
