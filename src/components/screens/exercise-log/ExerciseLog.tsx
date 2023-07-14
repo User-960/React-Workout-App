@@ -7,8 +7,13 @@ import { FC } from 'react'
 import Alert from '@/components/ui/alert/Alert'
 import Loader from '@/components/ui/loader/Loader'
 
+import { useExerciseLog } from './hooks/useExerciseLog'
+
+import ExerciseError from './ExerciseError'
 import styles from './ExerciseLog.module.scss'
 import HeaderExerciseLog from './HeaderExerciseLog'
+import ExerciseTableRow from './exercise-table/ExerciseTableRow'
+import ExerciseTable from './exercise-table/exerciseTable'
 import { ITimes } from '@/interfaces/exercise.interface'
 import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
 import ExerciseLogService from '@/services/exercise/exercise-log.service'
@@ -16,19 +21,7 @@ import ExerciseLogService from '@/services/exercise/exercise-log.service'
 const rows: string[] = ['Previous', 'Repeat & Weight', 'Completed']
 
 const ExerciseLog: FC = () => {
-	const { query } = useRouter()
-
-	const {
-		data: exerciseLog,
-		isSuccess,
-		isLoading
-	} = useQuery(
-		['get exercise log', query.id],
-		() => ExerciseLogService.getById(Number(query.id)),
-		{
-			select: ({ data }): IExerciseLog => data
-		}
-	)
+	const { exerciseLog, isSuccess, isLoading } = useExerciseLog()
 
 	return (
 		<>
@@ -37,78 +30,20 @@ const ExerciseLog: FC = () => {
 				className='wrapper-inner-page'
 				style={{ paddingLeft: 0, paddingRight: 0 }}
 			>
-				<div style={{ width: '90%', margin: '0 auto' }}>
-					{/* {errorChange && <Alert type='error' text={errorChange} />}
-					{errorCompleted && <Alert type='error' text={errorCompleted} />} */}
-				</div>
+				{/* <ExerciseError errors={[errorChange, errorCompleted]} /> */}
 
 				{isLoading ? (
 					<Loader />
 				) : (
 					<div className={styles.wrapper}>
-						<div className={styles.row}>
-							{rows.map((row: string) => (
-								<div key={row}>
-									<span>{row}</span>
-								</div>
-							))}
-						</div>
+						<ExerciseTable rows={rows} />
 
-						{exerciseLog?.times.map((item: ITimes, index) => (
-							<div
-								className={cn(styles.row, {
-									[styles.completed]: exerciseLog.isCompleted
-								})}
-								key={`time ${index}`}
-							>
-								<div
-									className={styles.opacity}
-									key={`Prev ${index}/${item.prevWeight}`}
-								>
-									<input
-										type='number'
-										defaultValue={item.prevWeight}
-										disabled
-									/>
-									<i>kg{item.isCompleted && ' '}</i>
-									<input
-										type='number'
-										defaultValue={item.prevRepeat}
-										disabled
-									/>
-								</div>
-
-								<div key={`RepeatWeight ${index}/${item.prevRepeat}`}>
-									<input
-										type='tel'
-										pattern='[0-9]*'
-										defaultValue={item.weight}
-										disabled={item.isCompleted}
-									/>
-									<i>kg{item.isCompleted && ' '}</i>
-									<input
-										type='number'
-										defaultValue={item.repeat}
-										disabled={item.isCompleted}
-									/>
-								</div>
-
-								<div key={`Completed ${index}/${item.isCompleted}`}>
-									<Image
-										src={
-											item.isCompleted
-												? '/images/exercises/check-completed.svg'
-												: '/images/exercises/check.svg'
-										}
-										alt={''}
-										className={styles.checkbox}
-										width={25}
-										height={25}
-										draggable={false}
-										onClick={() => {}}
-									/>
-								</div>
-							</div>
+						{exerciseLog?.times.map((item: ITimes) => (
+							<ExerciseTableRow
+								key={item.id}
+								item={item}
+								exerciseLog={exerciseLog}
+							/>
 						))}
 					</div>
 				)}
