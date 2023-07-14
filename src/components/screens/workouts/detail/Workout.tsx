@@ -16,7 +16,7 @@ const Workout: FC = () => {
 
 	const { data, isSuccess, isLoading } = useQuery(
 		['get workout log', query.id],
-		() => WorkoutLogService.getById(String(query.id)),
+		() => WorkoutLogService.getById(Number(query.id)),
 		{
 			select: ({ data }): IWorkoutLog => data
 		}

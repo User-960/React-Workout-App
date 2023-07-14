@@ -5,7 +5,7 @@ import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 const LOG = `${WORKOUTS}/log`
 
 class WorkoutLogService {
-	async getById(id: string) {
+	async getById(id: number) {
 		return $axios.get<any>(`${LOG}/${id}`)
 
 		// const { data } = await $axios.get<IWorkoutLog[]>(`${LOG}/${id}`)
