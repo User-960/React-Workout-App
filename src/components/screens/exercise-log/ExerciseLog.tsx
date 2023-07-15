@@ -7,21 +7,25 @@ import { FC } from 'react'
 import Alert from '@/components/ui/alert/Alert'
 import Loader from '@/components/ui/loader/Loader'
 
+import { useCompleteLog } from './hooks/useCompleteLog'
 import { useExerciseLog } from './hooks/useExerciseLog'
+import { useUpdateLogTime } from './hooks/useUpdateLogTime'
 
 import ExerciseError from './ExerciseError'
 import styles from './ExerciseLog.module.scss'
 import HeaderExerciseLog from './HeaderExerciseLog'
+import ExerciseTable from './exercise-table/ExerciseTable'
 import ExerciseTableRow from './exercise-table/ExerciseTableRow'
-import ExerciseTable from './exercise-table/exerciseTable'
 import { ITimes } from '@/interfaces/exercise.interface'
-import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
-import ExerciseLogService from '@/services/exercise/exercise-log.service'
 
 const rows: string[] = ['Previous', 'Repeat & Weight', 'Completed']
 
 const ExerciseLog: FC = () => {
-	const { exerciseLog, isSuccess, isLoading } = useExerciseLog()
+	const { exerciseLog, isSuccess, isLoading, onChangeTime, getTimeValue } =
+		useExerciseLog()
+
+	const { updateTime, errorChange } = useUpdateLogTime()
+	const { completeLog, errorCompleted } = useCompleteLog()
 
 	return (
 		<>
@@ -30,7 +34,7 @@ const ExerciseLog: FC = () => {
 				className='wrapper-inner-page'
 				style={{ paddingLeft: 0, paddingRight: 0 }}
 			>
-				{/* <ExerciseError errors={[errorChange, errorCompleted]} /> */}
+				<ExerciseError errors={[errorChange, errorCompleted]} />
 
 				{isLoading ? (
 					<Loader />
@@ -43,6 +47,8 @@ const ExerciseLog: FC = () => {
 								key={item.id}
 								item={item}
 								exerciseLog={exerciseLog}
+								onChange={() => onChangeTime(item.id, item)}
+								value={getTimeValue(item.id)}
 							/>
 						))}
 					</div>

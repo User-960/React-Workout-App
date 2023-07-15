@@ -1,20 +1,29 @@
-import cn from 'clsx'
-import Image from 'next/image'
-import { FC } from 'react'
+import cn from 'clsx';
+import Image from 'next/image';
+import { FC } from 'react';
 
-import styles from '../ExerciseLog.module.scss'
 
-import { ITimes } from '@/interfaces/exercise.interface'
-import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
+
+import styles from '../ExerciseLog.module.scss';
+
+
+
+import { ITimes } from '@/interfaces/exercise.interface';
+import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface';
+
 
 interface IExerciseTableRowProps {
 	item: ITimes
 	exerciseLog: IExerciseLog
+	onChange: any
+	value: any
 }
 
 const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 	item,
-	exerciseLog
+	exerciseLog,
+	onChange,
+	value
 }) => {
 	return (
 		<div

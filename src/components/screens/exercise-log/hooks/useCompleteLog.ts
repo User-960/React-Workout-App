@@ -8,7 +8,7 @@ import ExerciseLogService from '@/services/exercise/exercise-log.service'
 export const useCompleteLog = () => {
 	const { push } = useRouter()
 
-	const { mutate, error: errorCompeted } = useMutation(
+	const { mutate, error: errorCompleted } = useMutation(
 		['complete log'],
 		({ exerciseLogId, isCompleted }: ICompleteReq) =>
 			ExerciseLogService.complete(exerciseLogId, isCompleted),
@@ -22,7 +22,7 @@ export const useCompleteLog = () => {
 	return useMemo(
 		() => ({
 			completeLog: mutate,
-			errorCompeted
+			errorCompleted
 		}),
 		[]
 	)
