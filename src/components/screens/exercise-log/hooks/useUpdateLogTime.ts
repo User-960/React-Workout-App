@@ -12,8 +12,8 @@ export const useUpdateLogTime = () => {
 
 	const { mutate, error: errorChange } = useMutation(
 		['update log time'],
-		({ timeId, weight, height, isCompleted }: ITimesReq) =>
-			ExerciseLogService.updateTime(timeId, weight, height, isCompleted),
+		({ timeId, body }: ITimesReq) =>
+			ExerciseLogService.updateTime(timeId, body),
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries(['get exercise log', query.id])

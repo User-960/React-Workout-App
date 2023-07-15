@@ -1,5 +1,9 @@
 import { EXERCISES } from './exercise.service'
 import { $axios } from '@/api/api'
+import {
+	ITimesReq,
+	ITimesReqData
+} from '@/interfaces/logs/exercise-log.interface'
 
 const LOG = `${EXERCISES}/log`
 
@@ -12,17 +16,8 @@ class ExerciseLogService {
 		return $axios.post<any>(`${LOG}/${exerciseId}`)
 	}
 
-	async updateTime(
-		timeId: number,
-		weight: number,
-		height: number,
-		isCompleted: boolean
-	) {
-		return $axios.put<any>(`${LOG}/time/${timeId}`, {
-			weight,
-			height,
-			isCompleted
-		})
+	async updateTime(timeId: number, body: ITimesReqData) {
+		return $axios.put<any>(`${LOG}/time/${timeId}`, body)
 	}
 
 	async complete(exerciseLogId: number, isCompleted: boolean) {

@@ -1,34 +1,31 @@
-import cn from 'clsx';
-import Image from 'next/image';
-import { FC } from 'react';
+import cn from 'clsx'
+import Image from 'next/image'
+import { ChangeEvent, FC } from 'react'
 
+import styles from '../ExerciseLog.module.scss'
 
-
-import styles from '../ExerciseLog.module.scss';
-
-
-
-import { ITimes } from '@/interfaces/exercise.interface';
-import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface';
-
+import { ITimes } from '@/interfaces/exercise.interface'
 
 interface IExerciseTableRowProps {
 	item: ITimes
-	exerciseLog: IExerciseLog
-	onChange: any
-	value: any
+	onChangeState: (timeId: number, key: string, value: string) => void
+	getState: (
+		timeId: number,
+		key: string
+	) => string | number | readonly string[] | undefined
+	toggleTime: any
 }
 
 const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 	item,
-	exerciseLog,
-	onChange,
-	value
+	onChangeState,
+	getState,
+	toggleTime
 }) => {
 	return (
 		<div
 			className={cn(styles.row, {
-				[styles.completed]: exerciseLog.isCompleted
+				[styles.completed]: item.isCompleted
 			})}
 			key={`time ${item.id}`}
 		>
@@ -37,7 +34,7 @@ const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 				key={`Prev ${item.id}/${item.prevWeight}`}
 			>
 				<input type='number' defaultValue={item.prevWeight} disabled />
-				<i>kg{item.isCompleted && ' '}</i>
+				<i>kg{item.isCompleted ? '' : ' '}</i>
 				<input type='number' defaultValue={item.prevRepeat} disabled />
 			</div>
 
@@ -45,21 +42,29 @@ const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 				<input
 					type='tel'
 					pattern='[0-9]*'
-					defaultValue={item.weight}
+					value={getState(item.id, 'weight')}
 					disabled={item.isCompleted}
+					onChange={e => onChangeState(item.id, 'weight', e.target.value)}
+					// onChange={(e: ChangeEvent<HTMLInputElement>) =>
+					// 	onChangeState(item.id, 'weight', Number(e.target.value))
+					// }
 				/>
-				<i>kg{item.isCompleted && ' '}</i>
+				<i>kg{item.isCompleted ? '' : ' '}/</i>
 				<input
 					type='number'
-					defaultValue={item.repeat}
+					value={getState(item.id, 'repeat')}
 					disabled={item.isCompleted}
+					onChange={e => onChangeState(item.id, 'repeat', e.target.value)}
+					// onChange={(e: ChangeEvent<HTMLInputElement>) =>
+					// 	onChangeState(item.id, 'repeat', Number(e.target.value))
+					// }
 				/>
 			</div>
 
 			<div key={`Completed ${item.id}/${item.isCompleted}`}>
 				<Image
 					src={
-						item.isCompleted
+						getState(item.id, 'isCompleted')
 							? '/images/exercises/check-completed.svg'
 							: '/images/exercises/check.svg'
 					}
@@ -68,7 +73,9 @@ const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 					width={25}
 					height={25}
 					draggable={false}
-					onClick={() => {}}
+					onClick={() => {
+						toggleTime(item.id, !getState(item.id, 'isCompleted'))
+					}}
 				/>
 			</div>
 		</div>

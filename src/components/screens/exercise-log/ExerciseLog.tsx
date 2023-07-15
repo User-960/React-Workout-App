@@ -18,13 +18,19 @@ import ExerciseTable from './exercise-table/ExerciseTable'
 import ExerciseTableRow from './exercise-table/ExerciseTableRow'
 import { ITimes } from '@/interfaces/exercise.interface'
 
-const rows: string[] = ['Previous', 'Repeat & Weight', 'Completed']
+const rows: string[] = ['Previous', 'Weight & Repeat', 'Completed']
 
 const ExerciseLog: FC = () => {
-	const { exerciseLog, isSuccess, isLoading, onChangeTime, getTimeValue } =
-		useExerciseLog()
+	const {
+		exerciseLog,
+		isSuccess,
+		isLoading,
+		onChangeState,
+		getState,
+		toggleTime,
+		errorChange
+	} = useExerciseLog()
 
-	const { updateTime, errorChange } = useUpdateLogTime()
 	const { completeLog, errorCompleted } = useCompleteLog()
 
 	return (
@@ -46,9 +52,9 @@ const ExerciseLog: FC = () => {
 							<ExerciseTableRow
 								key={item.id}
 								item={item}
-								exerciseLog={exerciseLog}
-								onChange={() => onChangeTime(item.id, item)}
-								value={getTimeValue(item.id)}
+								onChangeState={onChangeState}
+								getState={getState}
+								toggleTime={toggleTime}
 							/>
 						))}
 					</div>

@@ -14,8 +14,12 @@ export interface IExerciseLog {
 
 export interface ITimesReq {
 	timeId: number
+	body: ITimesReqData
+}
+
+export interface ITimesReqData {
 	weight: number
-	height: number
+	repeat: number
 	isCompleted: boolean
 }
 
