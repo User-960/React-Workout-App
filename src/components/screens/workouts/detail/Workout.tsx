@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { FC, Fragment } from 'react'
 
 import Alert from '@/components/ui/alert/Alert'
+import Button from '@/components/ui/button/Button'
 import Loader from '@/components/ui/loader/Loader'
 
 import ExerciseItem from './ExerciseItem'
@@ -12,7 +13,8 @@ import { IWorkoutLog } from '@/interfaces/logs/workout-log.interface'
 import WorkoutLogService from '@/services/workout/workout-log.service'
 
 const Workout: FC = () => {
-	const { query } = useRouter()
+	const { push, query } = useRouter()
+	const id = Number(query.id)
 
 	const { data, isSuccess, isLoading } = useQuery(
 		['get workout log', query.id],
@@ -22,7 +24,15 @@ const Workout: FC = () => {
 		}
 	)
 
-	/* TODO: Complete workout*/
+	const { mutate } = useMutation(
+		['complete workout'],
+		() => WorkoutLogService.complete(id),
+		{
+			onSuccess: () => {
+				push('/workouts')
+			}
+		}
+	)
 
 	return (
 		<>
@@ -50,6 +60,7 @@ const Workout: FC = () => {
 						))}
 					</div>
 				)}
+				<Button clickHandler={() => mutate()}>Complete workout</Button>
 			</div>
 		</>
 	)
