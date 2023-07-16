@@ -2,8 +2,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 
-import AuthProvider from '@/components/providers/AuthProvider'
-
 import '@/assets/styles/index.scss'
 import { TypeComponentAuthFields } from '@/interfaces/page.interface'
 

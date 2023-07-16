@@ -9,7 +9,7 @@ const LOG = `${EXERCISES}/log`
 
 class ExerciseLogService {
 	async getById(id: number) {
-		return $axios.get<any>(`${LOG}/${id}`)
+		return await $axios.get<any>(`${LOG}/${id}`)
 	}
 
 	async create(exerciseId: number) {

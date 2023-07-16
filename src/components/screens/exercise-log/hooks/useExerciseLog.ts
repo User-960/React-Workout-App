@@ -1,13 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { useUpdateLogTime } from './useUpdateLogTime'
 import { ITimes } from '@/interfaces/exercise.interface'
-import {
-	IExerciseLog,
-	ITimesReq
-} from '@/interfaces/logs/exercise-log.interface'
+import { IExerciseLog } from '@/interfaces/logs/exercise-log.interface'
 import ExerciseLogService from '@/services/exercise/exercise-log.service'
 
 export const useExerciseLog = () => {
@@ -34,26 +31,42 @@ export const useExerciseLog = () => {
 		}
 	)
 
-	const onChangeState = (timeId: number, key: string, value: string): void => {
-		const newTimes = times.map((time: ITimes) => {
-			if (time.id === timeId) {
-				return { ...time, [key]: value }
-			}
+	useEffect(() => {
+		console.log(times)
+	}, [times])
 
-			return time
-		})
+	/* TODO: Project have been written on Next 
+    and times all the time is [] because we have SSR
+    Decision is try to change SSR to SSG or ISR
+  */
 
-		setTimes(newTimes)
+	const onChangeState = (timeId: number, key: string, value: string) => {
+		if (times?.length) {
+			const newTimes = times.map(time => {
+				if (time.id === timeId) {
+					return { ...time, [key]: value }
+				}
+
+				return time
+			})
+
+			setTimes(newTimes)
+		}
 	}
 
 	const getTime = (timeId: number) => {
-		return times.find(time => time.id === timeId)
+		if (times?.length) {
+			return times.find(time => time.id === timeId)
+		}
 	}
 
-	const getState = (timeId: number, key: string): any => {
+	const getState: any = (timeId: number, key: string) => {
+		const time = getTime(timeId)
 		if (key === 'weight' || key === 'repeat' || key === 'isCompleted') {
-			const time = getTime(timeId)
-			return time ? time[key] : key === 'isCompleted' ? false : 0
+			// return time ? time[key] : key === 'isCompleted' ? false : 0
+			if (time) {
+				return time[key]
+			}
 		}
 	}
 

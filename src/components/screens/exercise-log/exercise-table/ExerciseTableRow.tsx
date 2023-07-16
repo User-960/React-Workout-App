@@ -9,11 +9,8 @@ import { ITimes } from '@/interfaces/exercise.interface'
 interface IExerciseTableRowProps {
 	item: ITimes
 	onChangeState: (timeId: number, key: string, value: string) => void
-	getState: (
-		timeId: number,
-		key: string
-	) => string | number | readonly string[] | undefined
-	toggleTime: any
+	getState: (timeId: number, key: string) => any
+	toggleTime: (timeId: number, isCompleted: boolean) => void
 }
 
 const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
@@ -43,21 +40,19 @@ const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 					type='tel'
 					pattern='[0-9]*'
 					value={getState(item.id, 'weight')}
+					onChange={(e: ChangeEvent<HTMLInputElement>) =>
+						onChangeState(item.id, 'weight', e.target.value)
+					}
 					disabled={item.isCompleted}
-					onChange={e => onChangeState(item.id, 'weight', e.target.value)}
-					// onChange={(e: ChangeEvent<HTMLInputElement>) =>
-					// 	onChangeState(item.id, 'weight', Number(e.target.value))
-					// }
 				/>
 				<i>kg{item.isCompleted ? '' : ' '}/</i>
 				<input
 					type='number'
 					value={getState(item.id, 'repeat')}
+					onChange={(e: ChangeEvent<HTMLInputElement>) =>
+						onChangeState(item.id, 'repeat', e.target.value)
+					}
 					disabled={item.isCompleted}
-					onChange={e => onChangeState(item.id, 'repeat', e.target.value)}
-					// onChange={(e: ChangeEvent<HTMLInputElement>) =>
-					// 	onChangeState(item.id, 'repeat', Number(e.target.value))
-					// }
 				/>
 			</div>
 
@@ -73,9 +68,7 @@ const ExerciseTableRow: FC<IExerciseTableRowProps> = ({
 					width={25}
 					height={25}
 					draggable={false}
-					onClick={() => {
-						toggleTime(item.id, !getState(item.id, 'isCompleted'))
-					}}
+					onClick={() => toggleTime(item.id, !getState(item.id, 'isCompleted'))}
 				/>
 			</div>
 		</div>

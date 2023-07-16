@@ -25,7 +25,7 @@ export default ListWorkoutsPage
 // 	return <ListWorkouts workouts={workouts} />
 // }
 
-// // SSG or ISR with revalidate
+// SSG or ISR with revalidate
 // export const getStaticProps: GetStaticProps<IWorkoutData> = async () => {
 // 	const workouts = await WorkoutService.getAll()
 // 	return {
