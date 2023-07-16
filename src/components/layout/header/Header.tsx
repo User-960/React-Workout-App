@@ -24,6 +24,7 @@ const Header: FC<IPropsHeader> = ({ backLink = '/' }) => {
 				<>
 					{pathname === '/' && isAuth ? (
 						<button
+							aria-label='Go to profile'
 							onClick={() => {
 								push('/profile')
 							}}
@@ -32,6 +33,7 @@ const Header: FC<IPropsHeader> = ({ backLink = '/' }) => {
 						</button>
 					) : (
 						<button
+							aria-label='Go back'
 							onClick={() => {
 								push(isAuth ? backLink : '/auth')
 							}}

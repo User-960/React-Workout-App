@@ -10,7 +10,7 @@ const Hamburger: FC = () => {
 	const { ref, isShow, setIsShow } = useOnClickOutside(false)
 	return (
 		<div className={styles.wrapper}>
-			<button onClick={() => setIsShow(!false)}>
+			<button onClick={() => setIsShow(!false)} aria-label='Open menu'>
 				{isShow ? <CgClose /> : <CgMenuRight />}
 			</button>
 			<menu ref={ref}>
