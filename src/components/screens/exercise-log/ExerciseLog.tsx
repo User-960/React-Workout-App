@@ -7,9 +7,7 @@ import { FC } from 'react'
 import Alert from '@/components/ui/alert/Alert'
 import Loader from '@/components/ui/loader/Loader'
 
-import { useCompleteLog } from './hooks/useCompleteLog'
 import { useExerciseLog } from './hooks/useExerciseLog'
-import { useUpdateLogTime } from './hooks/useUpdateLogTime'
 
 import ExerciseError from './ExerciseError'
 import styles from './ExerciseLog.module.scss'
@@ -28,10 +26,8 @@ const ExerciseLog: FC = () => {
 		onChangeState,
 		getState,
 		toggleTime,
-		errorChange
+		error
 	} = useExerciseLog()
-
-	const { completeLog, errorCompleted } = useCompleteLog()
 
 	return (
 		<>
@@ -40,7 +36,7 @@ const ExerciseLog: FC = () => {
 				className='wrapper-inner-page'
 				style={{ paddingLeft: 0, paddingRight: 0 }}
 			>
-				<ExerciseError errors={[errorChange, errorCompleted]} />
+				<ExerciseError errors={[error]} />
 
 				{isLoading ? (
 					<Loader />

@@ -10,9 +10,21 @@ import ExerciseLogService from '@/services/exercise/exercise-log.service'
 export const useExerciseLog = () => {
 	const { query } = useRouter()
 
-	const { updateTime, errorChange } = useUpdateLogTime()
+	const [times, setTimes] = useState<ITimes[]>([
+		{
+			id: 101,
+			createdAt: '2023-07-16T20:20:04.867Z',
+			updatedAt: '2023-07-16T20:26:24.695Z',
+			weight: 0,
+			repeat: 0,
+			isCompleted: true,
+			exerciseLogId: 21,
+			prevWeight: 0,
+			prevRepeat: 0
+		}
+	])
 
-	const [times, setTimes] = useState<ITimes[]>([])
+	const { updateTime, error } = useUpdateLogTime(times)
 
 	const {
 		data: exerciseLog,
@@ -63,10 +75,7 @@ export const useExerciseLog = () => {
 	const getState: any = (timeId: number, key: string) => {
 		const time = getTime(timeId)
 		if (key === 'weight' || key === 'repeat' || key === 'isCompleted') {
-			// return time ? time[key] : key === 'isCompleted' ? false : 0
-			if (time) {
-				return time[key]
-			}
+			return time ? time[key] : key === 'isCompleted' ? false : 0
 		}
 	}
 
@@ -90,7 +99,7 @@ export const useExerciseLog = () => {
 			onChangeState,
 			getState,
 			toggleTime,
-			errorChange
+			error
 		}),
 		[isSuccess, isLoading]
 	)
